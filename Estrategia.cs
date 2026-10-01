@@ -33,7 +33,17 @@ namespace tpfinal
 
         public List<ItemCat> Todos(ArbolGeneral<ItemCat> arbol)
         {
-            return  [];
+            List<ItemCat> lista = new List<ItemCat>(); //lista que se retornará
+
+            if (arbol.getDatoRaiz().Tipo == TipoElemento.Producto) lista.Add(arbol.getDatoRaiz()); //se agrega el obj ITEMCAT
+
+            foreach (var h in arbol.getHijos())
+            {
+                lista.AddRange(Todos(h));
+            }
+
+
+            return  lista;
         }
 
         public void Agregar(ArbolGeneral<ItemCat> arbol, ItemCat dato, string rutaAlPadre)
