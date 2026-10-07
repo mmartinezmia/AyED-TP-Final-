@@ -16,15 +16,6 @@ namespace tpfinal
             return "Implementar";
         }
         
-
-        public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
-		{
-			return ["Implementar"];
-		}
-        
-
-              
-
         public List<List<string>> ConsultaNiveles(ArbolGeneral<ItemCat> arbol)
 		{
             return [["Implementar"]];
@@ -123,10 +114,12 @@ namespace tpfinal
 		
 		}
 
+		// Ejercicio numero 4
 		public List<String> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
-        {
+        { //creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
            List<string> listaURL = new List<string>();
 
+			//protegemos nuestro codigo de dos tipos de errores distintos. 
            if (arbol != null && !arbol.esVacio())
             {
                 Dfs (arbol, " ", listaURL);
@@ -138,23 +131,26 @@ namespace tpfinal
         private void Dfs(ArbolGeneral <ItemCat> nodoActual, string rutaViajada, List<string> lista)
         {
             string nuevaRuta;
-
+			//le decimos al codigo que si el nodo en el que estamos parados no tiene ningun valor, detengamos la ejecucion para no hacerle
+			//gastar tiempo.
             if (nodoActual == null)
             {
                 return;
             }
-
+			//si la rutaViajada no tiene ningun valor, significa que estamos parados en la raiz.Procesamos la raiz a la ruta con su nombre.
             if (rutaViajada == null)
             {
                 nuevaRuta = nodoActual.getDatoRaiz().Nombre ;
             }
-
+			//En caso de que la ruta tenga valor, concatenamos la barra espaciadora con el nombre del nodo actual en el que estamos ubicados.
             else
             {
                 nuevaRuta = nuevaRuta + "/" + nodoActual.Nombre;
             }
 
-
+			//En esta linea lo que queremos buscar es si el nodo en el que estamos parados es una hoja. Para eso, nos guiamos de nuestro arbol general de productos, donde nos indica que si el elemento es de tipo categoria, 
+			// significa que es padre. En cambio, si el elemento que estamos por procesar es de tipo producto, signfica que es hoja.
+			// Un dfs avanza siempre hacia abajo por una rama hasta llegar a una hoja antes de mirar hacia los lados (hermanos), lo que nosotros hicimos fue cortar la busqueda al encontrar la hoja y añadirla en la lista con todo el url completo.
             if (nodoActual.getDatoRaiz().Tipo == TipoElemento.Producto)
             {
                 lista.Add(nuevaruta);
@@ -164,6 +160,7 @@ namespace tpfinal
             {
                 foreach (var hijo in nodoActual.getHijos())
                 {
+					//Como todavia no somos hojas, nos llamamos a nosotros mismos con una recursividad para seguir explorando a nuestros hijos y poder terminar nuestra ruta.
                     Dfs (hijo, rutaViajada, lista );
                 }
             }
