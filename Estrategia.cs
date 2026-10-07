@@ -122,6 +122,52 @@ namespace tpfinal
 			}
 		
 		}
+
+		public List<String> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
+        {
+           List<string> listaURL = new List<string>();
+
+           if (arbol != null && !arbol.esVacio())
+            {
+                Dfs (arbol, " ", listaURL);
+            }
+
+            return listaURL;
+        }
+            
+        private void Dfs(ArbolGeneral <ItemCat> nodoActual, string rutaViajada, List<string> lista)
+        {
+            string nuevaRuta;
+
+            if (nodoActual == null)
+            {
+                return;
+            }
+
+            if (rutaViajada == null)
+            {
+                nuevaRuta = nodoActual.getDatoRaiz().Nombre ;
+            }
+
+            else
+            {
+                nuevaRuta = nuevaRuta + "/" + nodoActual.Nombre;
+            }
+
+
+            if (nodoActual.getDatoRaiz().Tipo == TipoElemento.Producto)
+            {
+                lista.Add(nuevaruta);
+            }
+
+            else
+            {
+                foreach (var hijo in nodoActual.getHijos())
+                {
+                    Dfs (hijo, rutaViajada, lista );
+                }
+            }
+        }
             
     }
 }
