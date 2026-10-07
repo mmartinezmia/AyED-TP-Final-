@@ -116,11 +116,11 @@ namespace tpfinal
 
 		// Ejercicio numero 4
 		public List<String> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
-        { //creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
+        { //Creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
            List<string> listaURL = new List<string>();
 
-			//protegemos nuestro codigo de dos tipos de errores distintos. 
-           if (arbol != null && !arbol.esVacio())
+			//Si el arbol no esta vacio, llamamos al metodo Dfs.
+           if (arbol != null)
             {
                 Dfs (arbol, " ", listaURL);
             }
@@ -131,13 +131,13 @@ namespace tpfinal
         private void Dfs(ArbolGeneral <ItemCat> nodoActual, string rutaViajada, List<string> lista)
         {
             string nuevaRuta;
-			//le decimos al codigo que si el nodo en el que estamos parados no tiene ningun valor, detengamos la ejecucion para no hacerle
+			//Le decimos al codigo que si el nodo en el que estamos parados no tiene ningun valor, detengamos la ejecucion para no hacerle
 			//gastar tiempo.
             if (nodoActual == null)
             {
                 return;
             }
-			//si la rutaViajada no tiene ningun valor, significa que estamos parados en la raiz.Procesamos la raiz a la ruta con su nombre.
+			//Si la rutaViajada no tiene ningun valor, significa que estamos parados en la raiz.Procesamos la raiz a la ruta con su nombre.
             if (rutaViajada == null)
             {
                 nuevaRuta = nodoActual.getDatoRaiz().Nombre ;
