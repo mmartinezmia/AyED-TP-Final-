@@ -101,9 +101,26 @@ namespace tpfinal
 
         }
 
-        public List<ItemCat> Buscar(ArbolGeneral<ItemCat> arbol, string elementoABuscar)
+       public List<ItemCat> Buscar(ArbolGeneral<ItemCat> arbol, string elementoABuscar)
+		{ 
+			List<ItemCat> resultado= new List<ItemCat>();
+			BuscarRecursivo(arbol,elementoABuscar,resultado);
+			return resultado;
+		}
+		
+		private void BuscarRecursivo(ArbolGeneral<ItemCat> arbol, string elementoABuscar, List<ItemCat> res)
 		{
-			return [];
+			ItemCat dato= arbol.getDatoRaiz();
+			
+			if(dato.Nombre.Contains(elementoABuscar))
+			{
+				res.Add(dato);
+			}
+			foreach(var x in arbol.getHijos())
+			{
+				BuscarRecursivo(x, elementoABuscar,res);
+			}
+		
 		}
             
     }
