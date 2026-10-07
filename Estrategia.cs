@@ -112,7 +112,7 @@ namespace tpfinal
 		{
 			ItemCat dato= arbol.getDatoRaiz();
 			
-			if(dato.Nombre.Contains(elementoABuscar))
+			if(dato.Nombre.ToLower().Contains(elementoABuscar.ToLowe()))
 			{
 				res.Add(dato);
 			}
