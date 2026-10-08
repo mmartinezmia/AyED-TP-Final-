@@ -122,7 +122,7 @@ namespace tpfinal
 			//Si el arbol no esta vacio, llamamos al metodo Dfs.
            if (arbol != null)
             {
-                Dfs (arbol, " ", listaURL);
+                Dfs (arbol, nuevaRuta ,listaURL);
             }
 
             return listaURL;
@@ -145,7 +145,7 @@ namespace tpfinal
 			//En caso de que la ruta tenga valor, concatenamos la barra espaciadora con el nombre del nodo actual en el que estamos ubicados.
             else
             {
-                nuevaRuta = rutaViajada + "/" + nodoActual.Nombre;
+                nuevaRuta = ${rutaViajada}/{nodoActual.getDatoRaiz().Nombre};
             }
 
 			//En esta linea lo que queremos buscar es si el nodo en el que estamos parados es una hoja. Para eso, nos guiamos de nuestro arbol general de productos, donde nos indica que si el elemento es de tipo categoria, 
@@ -161,7 +161,7 @@ namespace tpfinal
                 foreach (var hijo in nodoActual.getHijos())
                 {
 					//Como todavia no somos hojas, nos llamamos a nosotros mismos con una recursividad para seguir explorando a nuestros hijos y poder terminar nuestra ruta.
-                    Dfs (hijo, rutaViajada, lista );
+                    Dfs (hijo, nuevaRuta, lista );
                 }
             }
         }
