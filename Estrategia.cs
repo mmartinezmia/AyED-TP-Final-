@@ -119,49 +119,35 @@ namespace tpfinal
 		// Ejercicio numero 4
 		public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
         { //Creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
-           List<string> listaURL = new List<string>();
+          	List<string> listaURL = new List<string>();
+			foreach (ArbolGeneral<ItemCat> hijo in arbol.Hijos())
+    		{
+        		GenerarURLs(hijo, new List<string>(), listaURL);
+    		}
 
-			//Si el arbol no esta vacio, llamamos al metodo Dfs.
-           if (arbol == null)
-            {
-                return listaURL;
-            }
-
-            Dfs(arbol, "tienda.com", listaURL);
 			return listaURL;
         }
             
-        private void Dfs(ArbolGeneral<ItemCat> nodoActual, string rutaViajada, List<string> lista)
+        private void Dfs(ArbolGeneral<ItemCat> nodoActual, List<string>rutaViajada, List<string> lista)
         {
-			//Le decimos al codigo que si el nodo en el que estamos parados no tiene ningun valor, detengamos la ejecucion para no hacerle
-			//gastar tiempo.
-            if (nodoActual == null)
-            {
-                return;
-            }
+			rutaViajada.Add(arbol.getDatoRaiz().Nombre)
 
-			string nombre = Normalizar (nodoActual.getDatoRaiz().Nombre);
-			string nuevaRuta = rutaViajada == "" ? nombre: rutaViajada + "/" + nombre;
-
-			if (nodoActual.getDatoRaiz().Tipo == TipoElemento.Producto)
-            {
-                lista.Add(nuevaRuta);
-            }
+			if(arbol.esHoja())
+			{
+				string url="tienda.com/"+string.Join("/", rutaViajada);
+				lista.Add(url);
+			}
 
 			else
 			{
-				foreach (var hijo in nodoActual.getHijos())
-					DFS(hijo, nuevaRuta, lista);
-        	}      
-    }
+				foreach (ArbolGeneral<ItemCat> hijo in arbol.Hijos())
+				{
+					Dfs(hijo, rutaViajada, lista);
+				}
+			}
 
-	private string Normalizar(string texto)
-	{
-    	string d = texto.Trim().ToLowerInvariant().Normalize(NormalizationForm.FormD);
-    	StringBuilder sb = new StringBuilder();
-    	foreach (char c in d)
-        if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
-		{ sb.Append(c);}
-    	return sb.ToString().Replace(' ', '-');
+			camino.RemoveAt(camino.Count - 1);
+				
+		}
 }
 }
