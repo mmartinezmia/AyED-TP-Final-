@@ -115,7 +115,7 @@ namespace tpfinal
 		}
 
 		// Ejercicio numero 4
-		public List<String> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
+		public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
         { //Creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
            List<string> listaURL = new List<string>();
 
@@ -145,7 +145,7 @@ namespace tpfinal
 			//En caso de que la ruta tenga valor, concatenamos la barra espaciadora con el nombre del nodo actual en el que estamos ubicados.
             else
             {
-                nuevaRuta = ${rutaViajada}/{nodoActual.getDatoRaiz().Nombre};
+                nuevaRuta = $"{rutaViajada}/{nodoActual.getDatoRaiz().Nombre}";
             }
 
 			//En esta linea lo que queremos buscar es si el nodo en el que estamos parados es una hoja. Para eso, nos guiamos de nuestro arbol general de productos, donde nos indica que si el elemento es de tipo categoria, 
