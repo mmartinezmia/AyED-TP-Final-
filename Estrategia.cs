@@ -145,7 +145,7 @@ namespace tpfinal
 			//En caso de que la ruta tenga valor, concatenamos la barra espaciadora con el nombre del nodo actual en el que estamos ubicados.
             else
             {
-                nuevaRuta = nuevaRuta + "/" + nodoActual.Nombre;
+                nuevaRuta = rutaViajada + "/" + nodoActual.Nombre;
             }
 
 			//En esta linea lo que queremos buscar es si el nodo en el que estamos parados es una hoja. Para eso, nos guiamos de nuestro arbol general de productos, donde nos indica que si el elemento es de tipo categoria, 
@@ -153,7 +153,7 @@ namespace tpfinal
 			// Un dfs avanza siempre hacia abajo por una rama hasta llegar a una hoja antes de mirar hacia los lados (hermanos), lo que nosotros hicimos fue cortar la busqueda al encontrar la hoja y añadirla en la lista con todo el url completo.
             if (nodoActual.getDatoRaiz().Tipo == TipoElemento.Producto)
             {
-                lista.Add(nuevaruta);
+                lista.Add(nuevaRuta);
             }
 
             else
