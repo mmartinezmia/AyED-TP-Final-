@@ -122,7 +122,7 @@ namespace tpfinal
           	List<string> ruta = new List<string>();
 			list<string> resultado= new List<string>();
 			
-        	GenerarURLs(arbol, ruta, resultado);    	
+        	Dfs(arbol, ruta, resultado);    	
 			return resultado;
         }
             
