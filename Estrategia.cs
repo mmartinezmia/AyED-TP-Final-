@@ -120,9 +120,9 @@ namespace tpfinal
 		public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
         { //Creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
           	List<string> ruta = new List<string>();
-			list<string> resultado= new List<string>();
+			List<string> resultado= new List<string>();
 			
-        	GenerarURLs(arbol, ruta, resultado);    	
+        	Dfs(arbol, ruta, resultado);    	
 			return resultado;
         }
             
