@@ -116,36 +116,48 @@ namespace tpfinal
 		
 		}
 
-		// Ejercicio numero 4
-		public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
-        { //Creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
-          	List<string> ruta = new List<string>();
-			List<string> resultado= new List<string>();
-			
-        	Dfs(arbol, ruta, resultado);    	
-			return resultado;
-        }
-            
-        private void Dfs(ArbolGeneral<ItemCat> nodoActual, List<string>ruta, List<string> resultado)
+        // Ejercicio numero 4
+
+        public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
         {
-			ruta.Add(nodoActual.getDatoRaiz().Nombre);
+            List<string> resultado = new List<string>();
 
-			if(nodoActual.esHoja())
-			{
-				string url="tienda.com/"+string.Join("/", ruta);
-				resultado.Add(url);
-			}
+            foreach (ArbolGeneral<ItemCat> hijo in arbol.getHijos())
+            {
+                // Le pasamos un string vacío ("") al inicio
+                Dfs(hijo, "", resultado);
+            }
+            return resultado;
+        }
 
-			else
-			{
-				foreach (ArbolGeneral<ItemCat> hijo in nodoActual.getHijos())
-				{
-					Dfs(hijo, ruta, resultado);
-				}
-			}
+        // Corregido: cambiamos List<string> ruta por string ruta
+        private void Dfs(ArbolGeneral<ItemCat> nodoActual, string ruta, List<string> resultado)
+        {
+            // Corregido: usamos nodoActual en vez de arbol. 
+            // Agregamos el ToLower y los Replace para formatear la URL
+            string nombre = nodoActual.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
 
-			ruta.RemoveAt(ruta.Count - 1);
-				
-		}
-}
+            if (ruta == "")
+            {
+                ruta = nombre;
+            }
+            else
+            {
+                ruta = ruta + "/" + nombre; // Corregido: agregamos el punto y coma
+            }
+
+            if (nodoActual.esHoja())
+            {
+                resultado.Add("tienda.com/" + ruta);
+            }
+            else
+            {
+                // Corregido: usamos nodoActual en vez de arbol
+                foreach (ArbolGeneral<ItemCat> hijo in nodoActual.getHijos())
+                {
+                    Dfs(hijo, ruta, resultado);
+                }
+            }
+        }
+    }
 }
