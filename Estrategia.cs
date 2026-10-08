@@ -138,7 +138,7 @@ namespace tpfinal
                 return;
             }
 			//Si la rutaViajada no tiene ningun valor, significa que estamos parados en la raiz.Procesamos la raiz a la ruta con su nombre.
-            if (rutaViajada == null)
+            if (rutaViajada == "")
             {
                 nuevaRuta = nodoActual.getDatoRaiz().Nombre ;
             }
