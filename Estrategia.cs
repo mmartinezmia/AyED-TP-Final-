@@ -122,7 +122,7 @@ namespace tpfinal
 			//Si el arbol no esta vacio, llamamos al metodo Dfs.
            if (arbol != null)
             {
-                Dfs (arbol, "" ,listaURL);
+                Dfs (arbol, "tienda.com" ,listaURL);
             }
 
             return listaURL;
