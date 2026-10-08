@@ -119,30 +119,28 @@ namespace tpfinal
 		// Ejercicio numero 4
 		public List<string> GetURLsSEO(ArbolGeneral<ItemCat> arbol)
         { //Creamos una lista donde pondremos nuestros url creados para que no se vayan perdiendo a medida que vamos creando nuevos.
-          	List<string> listaURL = new List<string>();
-			foreach (ArbolGeneral<ItemCat> hijo in arbol.Hijos())
-    		{
-        		GenerarURLs(hijo, new List<string>(), listaURL);
-    		}
-
-			return listaURL;
+          	List<string> ruta = new List<string>();
+			list<string> resultado= new List<string>();
+			
+        	GenerarURLs(arbol, ruta, resultado);    	
+			return resultado;
         }
             
-        private void Dfs(ArbolGeneral<ItemCat> nodoActual, List<string>rutaViajada, List<string> lista)
+        private void Dfs(ArbolGeneral<ItemCat> nodoActual, List<string>ruta, List<string> resultado)
         {
-			rutaViajada.Add(arbol.getDatoRaiz().Nombre)
+			ruta.Add(arbol.getDatoRaiz().Nombre)
 
 			if(arbol.esHoja())
 			{
-				string url="tienda.com/"+string.Join("/", rutaViajada);
+				string url="tienda.com/"+string.Join("/", ruta);
 				lista.Add(url);
 			}
 
 			else
 			{
-				foreach (ArbolGeneral<ItemCat> hijo in arbol.Hijos())
+				foreach (ArbolGeneral<ItemCat> hijo in arbol.getHijos())
 				{
-					Dfs(hijo, rutaViajada, lista);
+					Dfs(hijo, ruta, resultado);
 				}
 			}
 
