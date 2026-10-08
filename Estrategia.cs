@@ -128,23 +128,23 @@ namespace tpfinal
             
         private void Dfs(ArbolGeneral<ItemCat> nodoActual, List<string>ruta, List<string> resultado)
         {
-			ruta.Add(arbol.getDatoRaiz().Nombre)
+			ruta.Add(nodoActual.getDatoRaiz().Nombre);
 
-			if(arbol.esHoja())
+			if(nodoActual.esHoja())
 			{
 				string url="tienda.com/"+string.Join("/", ruta);
-				lista.Add(url);
+				resultado.Add(url);
 			}
 
 			else
 			{
-				foreach (ArbolGeneral<ItemCat> hijo in arbol.getHijos())
+				foreach (ArbolGeneral<ItemCat> hijo in nodoActual.getHijos())
 				{
 					Dfs(hijo, ruta, resultado);
 				}
 			}
 
-			camino.RemoveAt(camino.Count - 1);
+			ruta.RemoveAt(ruta.Count - 1);
 				
 		}
 }
