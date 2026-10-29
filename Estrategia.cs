@@ -156,7 +156,7 @@ namespace tpfinal
                 // Corregido: usamos nodoActual en vez de arbol
                 foreach (ArbolGeneral<ItemCat> hijo in nodoActual.getHijos())
                 {
-                    Dfs(hijo, ruta + "/" + hijo.GetDatoRaiz().Nombre, resultado);
+                    Dfs(hijo, ruta + "/" + hijo.getDatoRaiz().Nombre, resultado);
                 }
             }
         }
