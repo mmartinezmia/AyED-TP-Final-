@@ -122,43 +122,38 @@ namespace tpfinal
         {
             List<string> resultado = new List<string>();
 
-            foreach (ArbolGeneral<ItemCat> hijo in arbol.getHijos())
-            {
-                // Le pasamos un string vacío ("") al inicio
-                Dfs(arbol, arbol.getDatoRaiz().Nombre, resultado);
-            }
-            return resultado;
+            if (arbol == null || arbol.EsVacio())
+    		{
+        		return resultado;
+    		}
+
+			string rutaInicial = "tienda.com"; 
+
+    		// Llamada al método recursivo auxiliar
+    		GenerarRutasRecursivo(arbol, rutaInicial, resultado);
+
+    		return resultado;
         }
 
         // Corregido: cambiamos List<string> ruta por string ruta
-        private void Dfs(ArbolGeneral<ItemCat> nodoActual, string ruta, List<string> resultado)
+        private void Dfs(ArbolGeneral<ItemCat> nodoActual, string ruta, List<string> resultados)
         {
             // Corregido: usamos nodoActual en vez de arbol. 
             // Agregamos el ToLower y los Replace para formatear la URL
             string nombre = nodoActual.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
 
-            if (ruta == "")
-            {
-                ruta = nombre;
-            }
-            else
-            {
-                ruta = ruta + "/" + nombre; // Corregido: agregamos el punto y coma
-            }
-
-            if (nodoActual.esHoja())
-            {
-                resultado.Add("tienda.com/" + ruta);
-				return;
-            }
-            else
-            {
-                // Corregido: usamos nodoActual en vez de arbol
-                foreach (ArbolGeneral<ItemCat> hijo in nodoActual.getHijos())
-                {
-                    Dfs(hijo, ruta + "/" + hijo.getDatoRaiz().Nombre, resultado);
-                }
-            }
+			if (nodoActual.EsHoja()) 
+    		{
+        		resultados.Add(ruta);
+        		return;
+    		}	
+			foreach (var hijo in nodoActual.GetHijos())
+    		{
+        		//ruta acumulada
+       			 string nuevaRuta = $"{rutaActual}/{hijo.getDatoRaiz().Nombre}";
+        
+        		GenerarRutasRecursivo(hijo, nuevaRuta, urls);
+    		}
         }
     }
 }
