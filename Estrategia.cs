@@ -130,7 +130,7 @@ namespace tpfinal
 			string rutaInicial = "tienda.com"; 
 
     		// Llamada al método recursivo auxiliar
-    		GenerarRutasRecursivo(arbol, rutaInicial, resultado);
+    		Dfs(arbol, rutaInicial, resultado);
 
     		return resultado;
         }
@@ -152,7 +152,7 @@ namespace tpfinal
         		//ruta acumulada
        			 string nuevaRuta = $"{ruta}/{hijo.getDatoRaiz().Nombre}";
         
-        		GenerarRutasRecursivo(hijo, nuevaRuta, resultados);
+        		Dfs(hijo, nuevaRuta, resultados);
     		}
         }
     }
