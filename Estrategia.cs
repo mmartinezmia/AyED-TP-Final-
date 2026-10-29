@@ -150,9 +150,9 @@ namespace tpfinal
 			foreach (var hijo in nodoActual.GetHijos())
     		{
         		//ruta acumulada
-       			 string nuevaRuta = $"{rutaActual}/{hijo.getDatoRaiz().Nombre}";
+       			 string nuevaRuta = $"{ruta}/{hijo.getDatoRaiz().Nombre}";
         
-        		GenerarRutasRecursivo(hijo, nuevaRuta, urls);
+        		GenerarRutasRecursivo(hijo, nuevaRuta, resultados);
     		}
         }
     }
