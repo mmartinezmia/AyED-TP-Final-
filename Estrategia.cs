@@ -125,7 +125,7 @@ namespace tpfinal
             foreach (ArbolGeneral<ItemCat> hijo in arbol.getHijos())
             {
                 // Le pasamos un string vacío ("") al inicio
-                Dfs(hijo, "", resultado);
+                Dfs(arbol, arbol.getDatoRaiz().Nombre, resultado);
             }
             return resultado;
         }
@@ -149,13 +149,14 @@ namespace tpfinal
             if (nodoActual.esHoja())
             {
                 resultado.Add("tienda.com/" + ruta);
+				return;
             }
             else
             {
                 // Corregido: usamos nodoActual en vez de arbol
                 foreach (ArbolGeneral<ItemCat> hijo in nodoActual.getHijos())
                 {
-                    Dfs(hijo, ruta, resultado);
+                    Dfs(hijo, ruta + "/" + hijo.GetDatoRaiz().Nombre, resultado);
                 }
             }
         }
