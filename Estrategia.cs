@@ -127,10 +127,8 @@ namespace tpfinal
         		return resultado;
     		}
 
-			string rutaInicial = "tienda.com"; 
-
     		// Llamada al método recursivo auxiliar
-    		InOrdenRecursivo(arbol, rutaInicial, resultado);
+    		InOrdenRecursivo(arbol, "tienda.com", resultado);
 
     		return resultado;
         }
@@ -140,19 +138,18 @@ namespace tpfinal
         {
             // Corregido: usamos nodoActual en vez de arbol. 
             // Agregamos el ToLower y los Replace para formatear la URL
-            string nombre = nodoActual.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
-
 			if (nodoActual.EsHoja()) 
     		{
         		resultados.Add(ruta);
         		return;
     		}	
+            string nombre = nodoActual.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
+
 			foreach (var hijo in nodoActual.GetHijos())
     		{
-        		//ruta acumulada
-       			 string nuevaRuta = $"{ruta}/{hijo.getDatoRaiz().Nombre}";
+				string nombre = nodoActual.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
         
-        		InOrdenRecursivo(hijo, nuevaRuta, resultados);
+        		InOrdenRecursivo(hijo, $"{ruta}/{nombre}", resultados);
     		}
         }
     }
