@@ -122,7 +122,7 @@ namespace tpfinal
         {
             List<string> resultado = new List<string>();
 
-            if (arbol == null || arbol.EsVacio())
+            if (arbol == null)
     		{
         		return resultado;
     		}
