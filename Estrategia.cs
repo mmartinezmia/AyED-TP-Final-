@@ -138,14 +138,14 @@ namespace tpfinal
         {
             // Corregido: usamos nodoActual en vez de arbol. 
             // Agregamos el ToLower y los Replace para formatear la URL
-			if (nodoActual.EsHoja()) 
+			if (nodoActual.esHoja()) 
     		{
         		resultados.Add(ruta);
         		return;
     		}	
-            string nombre = nodoActual.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
+         
 
-			foreach (var hijo in nodoActual.GetHijos())
+			foreach (var hijo in nodoActual.getHijos())
     		{
 				string nombre = nodoActual.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
         
