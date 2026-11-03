@@ -130,13 +130,13 @@ namespace tpfinal
 			string rutaInicial = "tienda.com"; 
 
     		// Llamada al método recursivo auxiliar
-    		Dfs(arbol, rutaInicial, resultado);
+    		InOrdenRecursivo(arbol, rutaInicial, resultado);
 
     		return resultado;
         }
 
         // Corregido: cambiamos List<string> ruta por string ruta
-        private void Dfs(ArbolGeneral<ItemCat> nodoActual, string ruta, List<string> resultados)
+        private void InOrdenRecursivo(ArbolGeneral<ItemCat> nodoActual, string ruta, List<string> resultados)
         {
             // Corregido: usamos nodoActual en vez de arbol. 
             // Agregamos el ToLower y los Replace para formatear la URL
@@ -152,7 +152,7 @@ namespace tpfinal
         		//ruta acumulada
        			 string nuevaRuta = $"{ruta}/{hijo.getDatoRaiz().Nombre}";
         
-        		Dfs(hijo, nuevaRuta, resultados);
+        		InOrdenRecursivo(hijo, nuevaRuta, resultados);
     		}
         }
     }
