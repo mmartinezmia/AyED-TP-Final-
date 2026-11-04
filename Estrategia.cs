@@ -129,7 +129,12 @@ namespace tpfinal
 
 			foreach (ArbolGeneral<ItemCat> sector in arbol.getHijos())
     		{
-        		InOrdenRecursivo(sector, sector.getDatoRaiz().Nombre, resultado);
+        		if (sector.getDatoRaiz().Tipo == TipoElemento.Categoria)
+        		{
+            		string ruta = sector.getDatoRaiz().Nombre;
+
+            		InOrdenRecursivo(sector, ruta, resultado);
+        		}
     		}
     		return resultado;
         }
@@ -139,21 +144,20 @@ namespace tpfinal
         {
             // Corregido: usamos nodoActual en vez de arbol. 
             // Agregamos el ToLower y los Replace para formatear la URL
-			if (nodoActual.esHoja()) 
-    		{
-        		resultados.Add("tienda.com" + ruta);
-        		return;
-    		}
-			else{
+			bool tieneCategorias = false;
+	
 			foreach (var hijo in nodoActual.getHijos())
     		{
 				if(hijo.getDatoRaiz().Tipo == TipoElemento.Categoria)
-				{string nombre = hijo.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
-
-				 strin nuevaRuta= $"{ruta}/{nombre}"
-        		InOrdenRecursivo(hijo, nuevaRuta, resultados);
+				{
+					tieneCategorias=true;
+					string nombre = hijo.getDatoRaiz().Nombre.ToLower().Replace(" ", "-").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
+        			InOrdenRecursivo(hijo, $"{ruta}/{nombre}", resultados);
     			}
         	}
+			if (!tieneCategorias)
+			{
+				resultados.Add("tieda.com/" + ruta);
     		}
 		}
 	}
