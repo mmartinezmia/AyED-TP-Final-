@@ -14,9 +14,43 @@ namespace tpfinal
 	{
 		
 		public string GetUrlSeoPorId(ArbolGeneral<ItemCat> arbol, int id)
-        {
-            return "Implementar";
-        }
+		{
+			if(arbol==null)
+			{
+				return "";
+			}
+			string rutaInicial= "tienda.com";
+			return GetUrlSeoPorIdRecursivo(arbol,id,rutaInicial);
+			
+		}
+		
+		private string GetUrlSeoPorIdRecursivo(ArbolGeneral<ItemCat> arbol, int id, string ruta)
+		{
+			if(arbol==null)
+			{return "";}
+			
+			if(arbol.getDatoRaiz().Id== id)
+			{
+				return ruta;
+			}
+			foreach(var x in arbol.getHijos())
+			{
+				string nombre= x.getDatoRaiz().Nombre.ToLower().Replace(" ","-").Replace("á","a").Replace("é","e").Replace("í","i")
+					.Replace("ó","o").Replace("ú","u");
+				
+				string nuevaRuta= ruta+"/"+nombre;
+				string resultado= GetUrlSeoPorIdRecursivo(x,id,nuevaRuta);
+				
+				if(resultado!="")
+				{
+					return resultado;
+				}
+			
+			}
+			return "";
+			
+			
+		}
         
         public List<List<string>> ConsultaNiveles(ArbolGeneral<ItemCat> arbol)
 		{
